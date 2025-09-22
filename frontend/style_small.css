@@ -1,0 +1,208 @@
+body{
+    margin-top:7%;
+    padding:0;
+    justify-content: center; background: linear-gradient(90deg, 
+    #FF0000, /* Red */
+    #FF7F00, /* Orange */
+    #FFFF00, /* Yellow */
+    #00FF00, /* Green */
+    #00FFFF, /* Cyan */
+    #0000FF, /* Blue */
+    #4B0082, /* Indigo */
+    #8B00FF  /* Violet */
+);
+    background-size: 300% 100%;
+    animation: gradient 2s forwards;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.body{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%;}
+    100% { background-position: 100% 50%; background-size:100% 100%;}
+}
+
+body *:not(.work){
+    opacity:0;
+    animation: some 2s forwards;
+}
+
+@keyframes some{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+form{
+    display: block;
+    text-align: center;
+    width:80%;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 5%;
+    background-color: white;
+}
+
+button, input{
+    width:80%;
+    padding:10px;
+    margin:20px;
+    transition: ease-in 0.15s;
+    border-radius: 5px;
+    border-color: black;
+}
+
+form button{transform:scale(1.15);}
+
+form button, input{
+    width:60%;
+    border-color: black;
+}
+
+form textarea{
+    resize: none;
+}
+
+button:hover{
+    background-color:cornflowerblue;
+    color:white;
+    transform: scale(1.2);
+}
+
+#link{
+    text-decoration: none;
+    font-weight: bold;
+    color:white;
+    transition: color ease 0.25s;
+}
+
+#link:hover{color:blueviolet;}
+
+/* MAIN */
+
+#vertNav{
+    transition: transform 2s;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    height:7%;
+    background-color: white;
+    border-top: black;
+    z-index:10;
+}
+
+#vertNav li:not(.h){
+    border-radius:4%;
+    border-color:black;
+    border-style:none;
+    transition: 0.15s ease-in;
+    background-color: white;
+    width:20%;
+    height:100%;
+    float: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#vertNav li:hover:not(.h){
+    background-color: cornflowerblue;
+}
+
+#vertNav li:active:not(.h){
+    background-color:cornflowerblue;
+}
+
+.h{
+    font-family: 'Sofia';
+    pointer-events: none;
+    font-size:0;
+}
+
+#vertNav li p{font-size:0;}
+
+#vertNav li img{
+    width:35%;
+    height:62.5%;
+}
+
+/* HORIZONTAL */
+
+.horizBar{
+    background-color:white;
+    position: fixed;
+    width:100%;
+    height:7%;
+    top:0;
+    left:0;
+    border-bottom-style: solid;
+    border-color: black;
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.horizBar li{
+    display: inline;
+    justify-content: center;
+    padding:10px;
+}
+
+/* DIVS */
+
+.work{
+    position: absolute;
+    opacity:0;
+    width:90%;
+    padding: 2%;
+    visibility: hidden;
+    border-width: 1%;
+}
+
+.work *{
+    background-color: white;
+    padding: 2%;
+    margin: 7%;
+    border-radius:15px;
+    border-style:solid;
+    border-color: black;
+    border-width: 1.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 85%;
+}
+
+.work * *:not(button, input, option, textarea, select){
+    border-style: none;
+}
+
+.work.showin{
+    visibility: visible;
+    animation: some 2s forwards;
+}
+
+#extra{
+    border-style: solid;
+    border-radius: 2%;
+}
+
+#div3 div.finish{
+    pointer-events: none;
+}

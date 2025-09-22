@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>InstaLearn</title>
+
+        <link rel="stylesheet" media="screen and (min-width:769px)" href="./style.css">
+        <link rel="stylesheet" media="screen and (max-width:768px)" href="./style_small.css">
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=outline">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+    <body>
+            <ul id="vertNav">
+                <li class="h"><h2>InstaLearn</h2></li>
+                <li data-target="div1"><img src="./pics/312069-P8VTDW-76-removebg-preview.png"> <p>Home</p></li>
+                <li data-target="div2"><img src="./pics/312069-P8VTDW-76_1_-removebg-preview.png"> <p>Search</p></li>
+                <li data-target="div3"><img src="./pics/file-removebg-preview.png"> <p>View</p></li>
+                <li data-target="clicks"><img src="./pics/png-transparent-add-add-photo-upload-plus-instagram-ui-icon-removebg-preview.png"> <p>New</p></li>
+                <li onclick="log()" style="float: bottom;"><img src="./pics/logout-icon-template-black-color-editable-log-out-icon-symbol-flat-illustration-for-graphic-and-web-design-free-vector-removebg-preview.png"> <p>Log out</p></li>
+            </ul>
+
+
+            <ul class="horizBar">
+                <li><p1 id="points">Points: 0</p1></li>
+            </ul>
+
+<!-- DIVS -->
+
+        <div id="div1" class="work showin">
+            <div>
+                <h1 id="name">Hello </h1>
+                <h1>Let's start today's journey</h1>
+            </div>     
+        </div>
+
+        <div id="clicks" class="work">
+            <form action="http://localhost:3000/createClick" method="post">
+                <h1>Create New click</h1>
+                <input type="text" placeholder="Enter question" name="question">
+                <input type="text" placeholder="Option 1" name="op1">
+                <input type="text" placeholder="Option 2" name="op2">
+                <select name="trueOp">
+                    <option>Select True Option</option>
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                </select>
+                <textarea placeholder="Info after (optional)" name="infoAfter"></textarea>
+                <input type="submit">
+            </form>
+        </div>
+
+        <div id="div2" class="work">
+
+        </div>
+
+        <div id="div3" class="work">
+            <div id="comp" style="display: none;">
+                <img src="./pics/verification.png" style="transform: scale(0.25);">
+                <p>You have completed all questions for now. Come back later!</p>
+            </div>
+            <div id="dumb">
+                <h1 id="h1">Question</h1>
+                <p id="who"></p>
+                <button id="op1" onclick="ops(1)"></button>
+                <button id="op2" onclick="ops(2)"></button>
+                <p id="extra" style="display:none;"></p>
+            </div>
+            <button onclick="update()">Next Click</button>
+        </div>
+
+        <script src="./script.js"></script>
+    </body>
+</html>
