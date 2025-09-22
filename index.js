@@ -12,7 +12,6 @@ const port = 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static('frontend'));
 app.use(cookies());
 app.use(cors());
 
@@ -91,14 +90,14 @@ function round(a, b){
 //CHECK
 function check(req, res){
     if (!req.cookies || !req.cookies.name) {
-        return res.redirect('login.html');
+        return res.redirect('/frontend/login.html');
     }
     else{
     rootCon.query('SELECT pass FROM info WHERE name=?;',[req.cookies.name],
         function (errr, results){ 
             if (errr || results.length === 0) {
             console.log("Error or no results found:", errr);
-            return res.redirect('login.html');
+            return res.redirect('/frontend/login.html');
             }
 
             con = mysql.createConnection({
