@@ -91,7 +91,7 @@ function round(a, b){
 //CHECK
 function check(req, res){
     if (!req.cookies || !req.cookies.name) {
-        return res.redirect('/login.html');
+        return res.redirect('/frontend/login.html');
     }
     else{
     rootCon.query('SELECT pass FROM info WHERE name=?;',[req.cookies.name],
@@ -108,7 +108,6 @@ function check(req, res){
                 database: "instalearn"
             });
         
-    console.log("yesssssssss");
     con.connect(err =>{
         if(err){
             return res.status(500).send("sorry...... Database not working");
