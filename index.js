@@ -5,6 +5,7 @@ const nodemailer = require('nodemailer');
 const cookies = require('cookie-parser');
 const cors = require('cors');
 const { finished } = require('nodemailer/lib/xoauth2');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -14,6 +15,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookies());
 app.use(cors());
+
+app.use(express.static(path.join(__dirname, 'frontend')));
 
 //GLOBAL VARIABLES
 
@@ -90,14 +93,14 @@ function round(a, b){
 //CHECK
 function check(req, res){
     if (!req.cookies || !req.cookies.name) {
-        return res.redirect('/frontend/login.html');
+        return res.sendFile(path.join(__dirname, 'frontend', 'login.html'));
     }
     else{
     rootCon.query('SELECT pass FROM info WHERE name=?;',[req.cookies.name],
         function (errr, results){ 
             if (errr || results.length === 0) {
             console.log("Error or no results found:", errr);
-            return res.redirect('/frontend/login.html');
+            return res.sendFile(path.join(__dirname, 'frontend', 'login.html'));
             }
 
             con = mysql.createConnection({
@@ -111,7 +114,7 @@ function check(req, res){
         if(err){
             return res.status(500).send("sorry...... Database not working");
         }
-        res.redirect('/main.html');
+        return res.sendFile(path.join(__dirname, 'frontend', 'main.html'));
     });
 
     });
@@ -141,7 +144,7 @@ app.post('/login', (req, res) => {
         if(err){
             console.log(err);
             console.log(username, password);
-            return res.status(500).redirect('/login.html');
+            return res.status(500).sendFile(path.join(__dirname, 'frontend', 'login.html'));
         }else{
         console.log("Success db");
         con.query("SELECT email FROM info WHERE name = ?", [username],
@@ -150,7 +153,7 @@ app.post('/login', (req, res) => {
                 console.log("Success access");
                 sc = sendMail(result[0].email);
                 date = new Date();
-                res.redirect('/authenticate.html');
+                res.sendFile(path.join(__dirname, 'frontend', 'authenticate.html'));
             }
         );
     }
@@ -191,10 +194,10 @@ app.post('/signin', (req, res) => {
                             console.log("Success access");
                             sc = sendMail(result[0].email);
                             date = new Date();
-                            res.redirect('/authenticate.html');
+                            res.sendFile(path.join(__dirname, 'frontend', 'authenticate.html'));
                         }
                     );
-                    res.redirect('/authenticate.html');
+                    res.sendFile(path.join(__dirname, 'frontend', 'authenticate.html'));
                 });
             });
         });
@@ -214,10 +217,10 @@ app.post('/authenticate', (req, res) => {
 
     if(nm == sc && diff <= 10){
         res.cookie('name', username, {httpOnly:false});
-        res.redirect("/main.html");
+        res.sendFile(path.join(__dirname, 'frontend', 'main.html'));
     }
     else{
-        res.redirect("/authenticate.html");
+        res.sendFile(path.join(__dirname, 'frontend', 'authenticate.html'));
     }
 });
 
@@ -249,7 +252,7 @@ app.post('/createClick', (req, res) => {
             console.log(nam, op1, op2, trueOp(), infoAfter);
         });
 
-        res.redirect('/main.html');
+        res.sendFile(path.join(__dirname, 'frontend', 'main.html'));
 
 });
 
